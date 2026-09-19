@@ -24,7 +24,7 @@ class LayananAgenda extends ChangeNotifier {
     notifyListeners();
 
     try {
-      Uri uriUrl = Uri.https(_stringUrl);
+      Uri uriUrl = Uri.https(_stringUrl, '/todos');
       final response = await http.get(uriUrl, headers: {
         'Content-Type': 'application/json'
       });

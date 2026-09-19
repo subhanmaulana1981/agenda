@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 class LayananAgenda extends ChangeNotifier {
 
   // private properties
-  final String _stringUrl = String.fromEnvironment('BASE_URL');
+  static const String _stringUrl = String.fromEnvironment('BASE_URL');
   List<Todo> _todos = [];
   bool _isLoading = false;
   String? _stringError;
@@ -19,17 +19,21 @@ class LayananAgenda extends ChangeNotifier {
   String? get stringError => _stringError;
 
   // methods to fetch agendas
-  Future<void> fetchTodos() async {
+  Future<void> lihatAgendas() async {
     _isLoading = true;
     notifyListeners();
 
     try {
       Uri uriUrl = Uri.https(_stringUrl, '/todos');
+      if (kDebugMode) print('uriUrl: $uriUrl');
+
       final response = await http.get(uriUrl, headers: {
         'Content-Type': 'application/json'
       });
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = jsonDecode(response.body);
+        if (kDebugMode) print('jsonList: $jsonList');
+
         _todos = jsonList.map((json) => Todo.fromJson(json)).toList();
 
       } else {

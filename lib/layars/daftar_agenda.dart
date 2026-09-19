@@ -18,7 +18,7 @@ class _DaftarAgendaState extends State<DaftarAgenda> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
-      context.read<LayananAgenda>().todos;
+      context.read<LayananAgenda>().lihatAgendas();
     });
   }
 

@@ -1,3 +1,4 @@
+import 'package:agenda/layars/daftar_agenda.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:agenda/layars/beranda.dart';
@@ -26,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _pages = [
       Beranda(onItemTapped: _onItemTapped),
       Text('Tambah Agenda'),
-      Text('Lihat Agenda'),
+      DaftarAgenda(),
       Text('Pengaturan'),
     ];
 

@@ -224,7 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).colorScheme.onSecondaryContainer,
         currentIndex: _selectedIndex,
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         onTap: _onItemTapped,
         ),
       backgroundColor: Theme.of(context).colorScheme.surfaceBright,

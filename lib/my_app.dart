@@ -1,3 +1,5 @@
+
+import 'package:agenda/temas/theme.dart';
 import 'package:agenda/layanans/layanan_agenda.dart';
 import 'package:agenda/layars/home_page.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +15,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Agenda',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            brightness: Brightness.light,
-              seedColor: Colors.grey
-          ),
           useMaterial3: true,
+          colorScheme: MaterialTheme.lightScheme(),
         ),
         darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            brightness: Brightness.dark,
-              seedColor: Colors.black
-          ),
           useMaterial3: true,
+          colorScheme: MaterialTheme.darkScheme(),
         ),
         themeMode: ThemeMode.system,
         home: const MyHomePage(

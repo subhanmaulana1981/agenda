@@ -1,4 +1,5 @@
 
+import 'package:agenda/widgets/loading.dart';
 import 'package:agenda/layanans/layanan_agenda.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,14 +30,19 @@ class _DaftarAgendaState extends State<DaftarAgenda> {
         // 1. loading state
         if (layananAgenda.isLoading) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Loading(),
           );
         }
 
         // 2. error state
         if (layananAgenda.stringError != null) {
           return Center(
-            child: Text(layananAgenda.stringError!),
+            child: Text(
+              layananAgenda.stringError!,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.error,
+              ),
+            ),
           );
         }
 
@@ -49,20 +55,32 @@ class _DaftarAgendaState extends State<DaftarAgenda> {
 
         // 4. data sukses state
         return ListView.builder(
+          physics: BouncingScrollPhysics(),
+          shrinkWrap: true,
+          padding: EdgeInsets.all(8.0),
           itemCount: layananAgenda.length,
           itemBuilder: (context, index) {
             final todo = layananAgenda.todos[index];
-            return ListTile(
-              leading: CircleAvatar(
-                child: Text('${index + 1}'),
-              ),
-              title: Text(todo.title),
-              trailing: Icon(
-                todo.isCompleted ? Icons.check_box : Icons.check_box_outline_blank,
-                color: todo.isCompleted ? Colors.green : Colors.grey,
+            return Card(
+              elevation: 8,
+              margin: EdgeInsets.all(8.0),
+              child: ListTile(
+                leading: CircleAvatar(
+                  child: Text('${index + 1}'),
+                ),
+                title: Text(todo.title),
+                trailing: Icon(
+                  todo.isCompleted ? Icons.check_box : Icons.check_box_outline_blank,
+                  color: todo.isCompleted ? Colors.green : Colors.grey,
+                ),
+                onTap: () {},
+                tileColor: (index.isEven)
+                  ? Theme.of(context).colorScheme.secondaryContainer
+                  : Theme.of(context).colorScheme.tertiaryContainer,
               ),
             );
-          }
+          },
+
         );
       }
     );
